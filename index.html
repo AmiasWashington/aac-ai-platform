@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AAC 活动本位辅助沟通平台</title>
+<style>
+  :root{--ink:#22221F;--ink2:#5C5C56;--ink3:#93938C;--line:#E3E1DA;--bg:#F7F7F4;--accent:#2E6B5D}
+  *{box-sizing:border-box}
+  body{margin:0;min-height:100vh;background:var(--bg);color:var(--ink);
+       font-family:"Microsoft YaHei","PingFang SC","Hiragino Sans GB",sans-serif;
+       display:flex;align-items:center;justify-content:center;padding:40px 20px}
+  .box{width:100%;max-width:860px}
+  h1{font-size:24px;margin:0 0 6px}
+  .sub{color:var(--ink2);margin:0 0 28px;font-size:14px}
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  a.cell{display:block;background:#fff;border:1px solid var(--line);border-radius:20px;padding:24px;
+         text-decoration:none;color:inherit;transition:transform .15s ease,box-shadow .15s ease}
+  a.cell:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(30,30,28,.08)}
+  .ic{font-size:30px}
+  .cell b{display:block;font-size:18px;margin:10px 0 6px}
+  .cell p{margin:0;color:var(--ink2);font-size:13.5px;line-height:1.7}
+  .cell .go{display:inline-block;margin-top:14px;color:var(--accent);font-weight:700;font-size:13.5px}
+  .note{margin-top:22px;font-size:12.5px;color:var(--ink3);line-height:1.8}
+  .tag{display:inline-block;font-size:11.5px;border:1px solid var(--line);border-radius:999px;padding:2px 10px;color:var(--ink2);margin-right:8px}
+  @media (max-width:720px){.cols{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+  <div class="box">
+    <h1>AAC 活动本位辅助沟通平台</h1>
+    <p class="sub">研究原型 v0.3 ｜ 学生端与教师端分设两个独立页面，互不干扰</p>
+    <div class="cols">
+      <a class="cell" href="student.html">
+        <div class="ic">🧑‍🏫</div>
+        <b>学生使用（沟通板）</b>
+        <p>只有沟通板本身：消息条、常驻核心词、主题页图卡、底部导航。没有统计、没有设置，避免干扰与误触。</p>
+        <span class="go">打开沟通板 →</span>
+      </a>
+      <a class="cell" href="teacher.html">
+        <div class="ic">⚙️</div>
+        <b>教师管理（图卡与数据）</b>
+        <p>图卡库、活动与介入路径、使用统计、观察报告、沟通板设置与数据备份。所有分析与配置都在这里。</p>
+        <span class="go">进入教师端 →</span>
+      </a>
+    </div>
+    <div class="note">
+      <span class="tag">中国本土化内容</span><span class="tag">词性配色</span><span class="tag">真人语音可录</span><span class="tag">编辑需密码</span>
+      <br>建议：把学生端全屏后交给学生使用，教师端在另一台设备或另一个窗口操作；两页共用同一份本机数据。
+      <br>数据只保存在本机浏览器，不上传；使用者名称建议使用化名。
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,23 @@
+# 系统与编辑器
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+
+# 依赖与缓存（本项目实际无需依赖，保留以防后续扩展）
+node_modules/
+__pycache__/
+*.pyc
+
+# 数据与隐私：切勿把含真实儿童数据的备份提交到仓库
+aac-platform-backup*.json
+*-backup.json
+*备份*.json
+观察摘要*.txt
+
+# 临时文件
+*.tmp
+*.log
+work/
+tmp/

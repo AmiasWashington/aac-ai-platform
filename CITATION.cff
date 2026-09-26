@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+message: "如使用本原型或其中的设计框架，请按以下信息引用。"
+title: "AAC 活动本位辅助沟通平台（研究原型）"
+abstract: >-
+  以"活动"为单位的辅助沟通（AAC）平台原型：把活动本位介入三部曲模式的要素操作化为可计算的设计变量，
+  包含活动情境评估、符号系统建构、情境化教学与动态调整三个功能性阶段，并把学生使用界面与教师管理界面分设。
+type: software
+authors:
+  - family-names: 张文菲
+    affiliation: "华南师范大学教育科学学院"
+    city: 广州
+    country: CN
+version: 0.3.0
+date-released: "2026-09-26"
+license: MIT
+keywords:
+  - 辅助沟通系统（AAC）
+  - 活动本位介入
+  - 特殊教育
+  - 人工智能辅助
+  - 原型设计
+repository-code: "https://github.com/<你的用户名>/<仓库名>"

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>教师端 · AAC 活动本位辅助沟通平台</title>
+<link rel="stylesheet" href="assets/app.css?v=6">
+<link rel="stylesheet" href="assets/symbol.css?v=6">
+</head>
+<body>
+<div class="app">
+
+  <aside class="side">
+    <div class="brand">
+      <div class="dot">AAC</div>
+      <div>
+        <b>教师端 · 管理与分析</b>
+        <span>学生端独立运行 · 研究原型 v0.3</span>
+      </div>
+    </div>
+    <nav class="nav" id="nav">
+      <div class="grp">图卡与活动</div>
+      <button data-page="library" class="on"><span class="ic">▤</span>图卡库</button>
+      <button data-page="activities"><span class="ic">◧</span>活动与介入路径</button>
+      <div class="grp">数据与调整</div>
+      <button data-page="insights"><span class="ic">◔</span>使用统计</button>
+      <button data-page="report"><span class="ic">◕</span>观察报告</button>
+      <div class="grp">学生端</div>
+      <button data-page="studentset"><span class="ic">▥</span>沟通板设置</button>
+      <button data-page="data"><span class="ic">◈</span>数据与备份</button>
+      <div class="grp">说明</div>
+      <button data-page="manual"><span class="ic">◍</span>使用手册</button>
+      <button data-page="design"><span class="ic">◫</span>设计说明</button>
+    </nav>
+    <div class="side-note">
+      学生端与教师端是两个独立页面：学生端只保留沟通板，不含任何统计与设置。
+      数据保存在本机浏览器，两页共用。
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="wrap">
+      <div class="topbar">
+        <div>
+          <h1 id="pgTitle">图卡库</h1>
+          <p id="pgSub"></p>
+        </div>
+        <div class="right" id="topActions"></div>
+      </div>
+
+      <!-- ============ 图卡库 ============ -->
+      <section class="page on" id="page-library">
+        <div class="card" style="margin-bottom:16px"><div class="bd toolbar">
+          <div class="grow"><input type="text" id="q" placeholder="搜索图卡名称…"></div>
+          <select id="fPage" style="width:150px"></select>
+          <select id="fCls" style="width:130px"></select>
+          <select id="fCore" style="width:130px">
+            <option value="">全部图卡</option>
+            <option value="1">仅常驻核心词</option>
+            <option value="0">仅主题页图卡</option>
+          </select>
+          <button class="btn primary" id="btnNew">＋ 新建图卡</button>
+        </div></div>
+        <div class="card">
+          <div class="hd"><h2>图卡</h2><span class="sub" id="libCount"></span>
+            <div class="legendline" style="margin-left:auto" id="legend"></div></div>
+          <div class="bd"><div class="libgrid" id="libGrid"></div></div>
+        </div>
+      </section>
+
+      <!-- ============ 活动 ============ -->
+      <section class="page" id="page-activities">
+        <div class="grid" style="grid-template-columns:1.3fr 1fr;align-items:start">
+          <div class="card">
+            <div class="hd"><h2>活动二维分类</h2><span class="sub">纵轴：可预测性 ｜ 横轴：沟通机会密度</span></div>
+            <div class="bd">
+              <div class="tiny muted" style="margin-bottom:6px">可预测性 高 ↑</div>
+              <div class="matrix" id="matrix"></div>
+              <div class="tiny muted" style="margin-top:8px;display:flex;justify-content:space-between">
+                <span>← 机会密度 低</span><span>机会密度 高 →</span>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card">
+              <div class="hd"><h2>活动清单</h2><span class="sub" id="actCount"></span>
+                <div style="margin-left:10px"><button class="btn sm primary" id="btnNewAct">＋ 新建活动</button></div></div>
+              <div class="bd" id="actList"></div>
+            </div>
+            <div id="actDetail"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ 使用统计 ============ -->
+      <section class="page" id="page-insights">
+        <div class="grid g4" id="statCards" style="margin-bottom:16px"></div>
+        <div class="card">
+          <div class="hd"><h2>符号使用频率与跨活动复用率</h2><span class="sub" id="statHint"></span></div>
+          <div class="bd" id="statTable"></div>
+        </div>
+      </section>
+
+      <!-- ============ 观察报告 ============ -->
+      <section class="page" id="page-report">
+        <div class="grid g3" id="repCards" style="margin-bottom:16px"></div>
+        <div class="grid g2" style="margin-bottom:16px">
+          <div class="card"><div class="hd"><h2>响应延迟分布</h2><span class="sub">从首次点选到记录结果</span></div>
+            <div class="bd" id="repLat"></div></div>
+          <div class="card"><div class="hd"><h2>沟通失败模式</h2><span class="sub">来自使用日志</span></div>
+            <div class="bd" id="repFail"></div></div>
+        </div>
+        <div class="card"><div class="hd"><h2>观察摘要（自动生成）</h2>
+          <span class="sub">只陈述可观察事实，不作诊断性结论</span></div>
+          <div class="bd" id="repSum"></div></div>
+      </section>
+
+      <!-- ============ 沟通板设置 ============ -->
+      <section class="page" id="page-studentset">
+        <div class="grid g2" style="align-items:start">
+          <div class="card">
+            <div class="hd"><h2>学生端显示</h2><span class="sub">改动立即生效</span></div>
+            <div class="bd">
+              <label class="field"><span class="lb">网格列数 / 行数（上限）</span>
+                <div style="display:flex;gap:10px">
+                  <select id="setCols" style="width:130px"></select>
+                  <select id="setRows" style="width:130px"></select>
+                </div>
+                <span class="hint">列数决定一行放几张图卡；行数只是上限，实际会按图卡数量自适应放大。</span></label>
+              <label class="field"><span class="lb">拼音标注</span>
+                <select id="setPinyin"><option value="1">显示拼音</option><option value="0">不显示拼音</option></select>
+                <span class="hint">面向正在识字过渡的儿童，拼音可帮助教师与家长对照。</span></label>
+              <label class="field"><span class="lb">常驻核心词行</span>
+                <select id="setCore"><option value="1">显示（推荐）</option><option value="0">隐藏</option></select>
+                <span class="hint">核心词固定位置、不随主题页变化，对应"核心词尽早稳定、少变动"。</span></label>
+              <label class="field"><span class="lb">点图卡即朗读</span>
+                <select id="setSpeak"><option value="1">开启</option><option value="0">关闭</option></select></label>
+              <label class="field" style="margin-bottom:0"><span class="lb">语速 <span class="muted" id="rateVal"></span></span>
+                <input type="range" id="setRate" min="0.5" max="1.4" step="0.05"></label>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card">
+              <div class="hd"><h2>学生信息与教师密码</h2></div>
+              <div class="bd">
+                <label class="field"><span class="lb">使用者称呼（记录用）</span>
+                  <input type="text" id="setUser" placeholder="例如：小星（化名）"></label>
+                <label class="field"><span class="lb">班级/年级</span>
+                  <input type="text" id="setCls" placeholder="例如：培智二年级"></label>
+                <label class="field" style="margin-bottom:0"><span class="lb">教师端进入密码</span>
+                  <input type="text" id="setPin" inputmode="numeric" maxlength="6">
+                  <span class="hint">学生端点击右上角设置需要输入此密码，避免学生误入管理界面。</span></label>
+              </div>
+            </div>
+            <div class="card">
+              <div class="hd"><h2>预览学生端</h2></div>
+              <div class="bd">
+                <p class="tiny muted" style="margin:0 0 12px">学生端是独立页面，没有任何统计与设置项；建议全屏后交给学生使用。</p>
+                <button class="btn primary" onclick="window.__aacGo?window.__aacGo('student'):window.open('student.html','_blank')">打开学生沟通板</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ 数据与备份 ============ -->
+      <section class="page" id="page-data">
+        <div class="card">
+          <div class="hd"><h2>数据</h2><span class="sub" id="dataInfo"></span></div>
+          <div class="bd col" style="gap:12px">
+            <div class="actions">
+              <button class="btn" id="btnExport">⤓ 导出备份（JSON）</button>
+              <button class="btn" id="btnImport">⤒ 导入备份</button>
+              <input type="file" id="fileImport" accept="application/json" style="display:none">
+            </div>
+            <div class="actions">
+              <button class="btn" id="btnSeed">恢复演示数据</button>
+              <button class="btn danger" id="btnReset">清空全部数据</button>
+            </div>
+            <div class="note sand">「恢复演示数据」与「清空全部数据」会覆盖当前内容，请先导出备份。</div>
+            <div class="note"><b>隐私：</b>数据只保存在本机浏览器，不上传；使用者名称建议使用化名。导出文件含儿童沟通过程数据，请妥善保管。</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ 使用手册 ============ -->
+      <section class="page" id="page-manual">
+        <div class="card"><div class="bd"><div class="doc" id="manualBody"></div></div></div>
+      </section>
+
+      <!-- ============ 设计说明 ============ -->
+      <section class="page" id="page-design">
+        <div class="tabs" id="desTabs">
+          <button data-tab="map" class="on">三部曲 × 系统功能</button>
+          <button data-tab="path">两类活动路径</button>
+          <button data-tab="model">数据模型</button>
+          <button data-tab="module">模块与阶段</button>
+        </div>
+        <div class="tabpane on" id="pane-map"></div>
+        <div class="tabpane" id="pane-path"></div>
+        <div class="tabpane" id="pane-model"></div>
+        <div class="tabpane" id="pane-module"></div>
+      </section>
+
+    </div>
+  </main>
+</div>
+
+<div id="modalHost"></div>
+<div id="toastHost"></div>
+<script src="assets/store.js?v=6"></script>
+<script src="assets/cards.js?v=6"></script>
+<script src="assets/teacher.js?v=6"></script>
+</body>
+</html>

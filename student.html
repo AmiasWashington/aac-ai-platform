@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<title>我的沟通板</title>
+<link rel="stylesheet" href="assets/symbol.css?v=6">
+<link rel="stylesheet" href="assets/student.css?v=6">
+</head>
+<body class="student">
+
+  <!-- 顶部：消息条 -->
+  <header class="stripbar">
+    <div class="msg" id="msg" aria-live="polite">
+      <span class="hint">点下面的图卡说话</span>
+    </div>
+    <div class="stripbtns">
+      <button class="bigbtn speak" id="btnSpeak" title="朗读整句">
+        <span class="ic">🔊</span><span class="tx">说一句</span>
+      </button>
+      <button class="bigbtn" id="btnDel" title="删掉最后一个">
+        <span class="ic">⌫</span><span class="tx">删一个</span>
+      </button>
+      <button class="bigbtn" id="btnClear" title="全部清空">
+        <span class="ic">🧹</span><span class="tx">清空</span>
+      </button>
+      <button class="bigbtn" id="btnLog" title="记录本次表达的结果（教师用）">
+        <span class="ic">📝</span><span class="tx">记录</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- 常驻核心词 -->
+  <section class="corerow" id="coreRow"></section>
+
+  <!-- 主网格 -->
+  <main class="gridwrap">
+    <button class="pager left" id="pgPrev" title="上一页">‹</button>
+    <div class="grid" id="grid"></div>
+    <button class="pager right" id="pgNext" title="下一页">›</button>
+  </main>
+
+  <!-- 底部导航 -->
+  <nav class="navbar">
+    <div class="pages" id="pages"></div>
+    <div class="tools">
+      <button class="tool" id="btnActs" title="活动"><span class="ic">📋</span><span class="tx">活动</span></button>
+      <button class="tool" id="btnFull" title="全屏"><span class="ic">⛶</span><span class="tx">全屏</span></button>
+      <button class="tool" id="btnLock" title="锁定防误触"><span class="ic">🔓</span><span class="tx">锁定</span></button>
+      <button class="tool gear" id="btnGear" title="教师设置"><span class="ic">⚙</span><span class="tx">设置</span></button>
+    </div>
+  </nav>
+
+  <!-- 活动选择（盖层） -->
+  <div class="sheet" id="actSheet">
+    <div class="sheetbox">
+      <div class="sh"><b>选择活动</b><button class="x" id="actClose">×</button></div>
+      <div class="acts" id="actList"></div>
+      <div class="tiny muted" id="actHint"></div>
+    </div>
+  </div>
+
+  <!-- 锁定提示 -->
+  <div class="lockmask" id="lockMask">
+    <div class="lockbox">
+      <div class="lk">🔒</div>
+      <b>已锁定</b>
+      <p>长按任意位置 2 秒即可解锁（连续点 5 下也可以）</p>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="assets/store.js?v=6"></script>
+  <script src="assets/cards.js?v=6"></script>
+  <script src="assets/student.js?v=6"></script>
+</body>
+</html>
